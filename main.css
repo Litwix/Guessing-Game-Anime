@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&display=swap');
+
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.center {
+    text-align: center;
+}
+
+#header {
+    margin-top: 3rem;
+}
+
+#play-op {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: 12rem;
+    border: none;
+    background-color: rgb(245, 207, 242);
+}
+
+#input-box {
+    width: 15rem;
+    height: 1.2rem;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    text-indent: 0.8rem;
+}
+
+#input-box:hover, #input-box:focus-within {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+button {
+    margin: 0.5rem 0.2rem;
+    padding: 0.3rem;
+    width: 5rem;
+    border: none;
+    background-color:rgb(245, 207, 242);
+}
+
+button:hover {
+    box-shadow: 0 0 0.3rem 0 rgb(125, 200, 250);
+}
+
+.guess {
+    margin: 0.4rem;
+    padding: 0.3rem 5rem;
+    border: 1px solid lightgray;
+}
+
+#restart {
+    margin: 5rem;
+}
+
+#footer {
+    width: 100%;
+    margin: 0 0 0 -0.5rem;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(245, 207, 242);
+}

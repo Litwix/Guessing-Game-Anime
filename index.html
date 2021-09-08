@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Guessing Game Anime Edition</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <header id="header" class="center">
+            <h1>The Guessing Game: Anime Edition</h1>
+            <h3>Play the random anime opening audio below<br>and see if you can guess the anime</h3>
+        </header>
+
+       <div class="center"><button id="play-op">Play Random Anime OP</button></div>
+
+        <div id="user-input" class="center">
+            <p><input id="input-box" type="text" value=""></p>
+            <button id="submit">Submit</button>
+            <button id="skip">Skip</button>
+            <button id="hint">Hint</button>
+        </div>
+
+        <div id="feedback" class="center">
+            <h3></h3>
+        </div>
+
+        <div id="hintArray" class="center">
+            <h3></h3>
+        </div>
+
+        <div id="guess-info" class="center">
+            <h3>Remaining Lives: 3</h3>
+            <h3>Previous Guesses:</h3>
+            <span id="guess1" class="guess">?</span>
+            <span id="guess2" class="guess">?</span>
+            <span id="guess3" class="guess">?</span>
+        </div>
+
+        <div class="center"><button id="restart">Restart</button></div>
+
+        <footer id="footer" class="center">
+            <h3>Litwix Creations</h3>
+        </footer>
+
+        <script src='guessing-game-anime.js'></script>
+    </body>
+</html>
