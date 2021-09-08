@@ -31,7 +31,8 @@ function generateSong() {
     return [answer, song];
 }
 
-var audio = new Audio('../audio/' + generateSong()[1]);
+// var audio = new Audio('../audio/' + generateSong()[1]);
+var audio = new Audio('https://raw.githubusercontent.com/Litwix/Guessing-Game-Anime/main/audio/' + generateSong()[1]);
 
 let playOP = document.getElementById('play-op');
 let count = 0;
