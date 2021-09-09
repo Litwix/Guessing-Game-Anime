@@ -13,34 +13,38 @@ class Game {
         this.guess = null;
         this.attempts = 3;
         this.correctGuesses = [];
+        this.correctGuessesFormatted = [];
         this.tempIncorrectGuesses = [];
+        this.tempIncorrectGuessesFormatted = [];
     }
 
     generateAnswer() {
         const song = shuffled[this.index];
-        const answer = song.slice(0, song.length-4).toLowerCase();
+        const answer = song.slice(0, song.length-4);
         return answer;
     }
 
-    //Warning (untested, in progress):
-    checkGuess(playersGuess) {
-        this.guess = playersGuess.toLowerCase();
+    checkGuess(guess) {
+        this.guess = guess.toLowerCase();
         let feedback = '';
-        if (this.guess === this.answer) {
+        if (this.guess === this.answer.toLowerCase()) {
             this.score += 10;
-            this.correctGuesses.push(this.guess);
+            this.correctGuesses.push(this.answer.toLowerCase());
+            this.correctGuessesFormatted.push(this.answer);
             this.tempIncorrectGuesses = [];
+            this.tempIncorrectGuessesFormatted = [];
+            document.querySelector('#correct-guesses').innerHTML = `Correct Guesses: ${this.correctGuessesFormatted.join(', ')}`;
+            document.querySelector('#incorrect-attempts').innerHTML = `Incorrect Attempts (current round): N/A`;
             feedback = 'Correct!';
-            document.querySelector('#correct-guesses').innerHTML = this.correctGuesses.join(', ');
-            document.querySelector('#incorrect-attempts').innerHTML = this.tempIncorrectGuesses.join(', ');
         } else if (this.correctGuesses.includes(this.guess)) {
             feedback = 'You have already correctly guessed this anime!';
         } else if (this.tempIncorrectGuesses.includes(this.guess)) {
             feedback = "You just tried that! You're lucky I'm not taking any more lives!";
         } else {
             this.tempIncorrectGuesses.push(this.guess);
-            document.querySelector('#incorrect-attempts').innerHTML = this.tempIncorrectGuesses.join(', ');
+            this.tempIncorrectGuessesFormatted.push(guess);
             this.attempts--;
+            document.querySelector('#incorrect-attempts').innerHTML = `Incorrect Attempts (current round): ${this.tempIncorrectGuessesFormatted.join(', ')}`;
             document.querySelector('#remaining').innerHTML = `Remaining Lives: ${this.attempts}`;
             if (this.attempts === 0) {
                 feedback = `Game Over! Your final score is ${this.score}`;
@@ -48,7 +52,6 @@ class Game {
                 feedback = 'Incorrect! Try again!';
             }
         }
-
         document.querySelector('#feedback > h3').innerHTML = feedback;
         return feedback;
     }
@@ -88,19 +91,25 @@ function playGame() {
         }
     });
 
-    //Submit Button (untested, in progress):
+    //Submit Button:
     const submit = document.getElementById('submit');
     submit.addEventListener('click', function() {
         const guess = document.querySelector('#input-box').value;
         document.querySelector('#input-box').value = '';
-        game.checkGuess(guess);
+        const feedback = game.checkGuess(guess);
+        if (feedback.includes('Correct!')) {
+            setTimeout(advanceSong(), 500);
+        }
+        if (feedback.includes('Game Over!')) {
+            setTimeout(endGame(), 500);
+        }
     });
 
     //Skip Button:
     const skip = document.getElementById('skip');
     skip.addEventListener('click', function() {
         game.score -= 3;
-        advanceSong();
+        setTimeout(advanceSong(), 500);
     })
 
     //Hint Button:
@@ -122,6 +131,7 @@ function playGame() {
         }
         audio.pause();
         audio = new Audio('https://raw.githubusercontent.com/Litwix/Guessing-Game-Anime/main/audio/' + shuffled[game.index]);
+        game.answer = game.generateAnswer();
         audio.play();
         count = 1;
         playOP.innerHTML = 'Pause';
@@ -129,7 +139,11 @@ function playGame() {
 
     function endGame() {
         audio.pause();
-        alert(`No more songs!\nYour final score was ${game.score}.\nPress "OK" to play again`);
+        if (game.index === shuffled.length) {
+            alert(`No more songs!\nYour final score was ${game.score}.\nPress "OK" to play again`);
+        } else if (game.attempts === 0) {
+            alert(`No more lives!\nYour final score was ${game.score}.\nPress "OK" to play again`);
+        }
         window.location.reload();
     }
 }
