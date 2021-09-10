@@ -14,7 +14,7 @@
 }
 
 #flex-left {
-    padding-top: 1.5rem;
+    padding-top: 0.5rem;
     padding-left: 1.5rem;
 }
 
@@ -26,12 +26,20 @@
     padding-right: 1.5rem;
 }
 
+#flex-right > a {
+    float: right;
+    color: black;
+    text-decoration: none;
+    padding-top: 0.5rem;
+    padding-right: 1.5rem;
+}
+
 .center {
     text-align: center;
 }
 
 #header {
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 #play-op {

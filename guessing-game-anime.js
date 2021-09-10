@@ -81,6 +81,7 @@ function playGame() {
     var audio = new Audio('https://raw.githubusercontent.com/Litwix/Guessing-Game-Anime/main/audio/' + shuffled[game.index]);
     const playOP = document.getElementById('play-op');
     let count = 0;
+    let timerCount = 0;
     playOP.addEventListener('click', function() {
         if (count % 2 === 0) {
             audio.play();
@@ -90,6 +91,10 @@ function playGame() {
             audio.pause();
             playOP.innerHTML = 'Resume';
             count++;
+        }
+        if (timerCount === 0) {
+            timer();
+            timerCount++;
         }
     });
 
@@ -142,6 +147,18 @@ function playGame() {
         window.location.reload();
     });
 
+    function timer() {
+        var sec = 90;
+        var timer = setInterval(function() {
+            document.getElementById('remaining-time').innerHTML = `Remaining Time: ${sec} seconds`;
+            sec--;
+            if (sec < -1) {
+                clearInterval(timer);
+                endGame();
+            }
+        }, 1000);
+    }
+
     function advanceSong() {
         game.index++;
         if (game.index === shuffled.length) {
@@ -161,6 +178,8 @@ function playGame() {
             alert(`No more songs!\nYour final score was ${game.score}.\nPress "OK" to play again`);
         } else if (game.attempts === 0) {
             alert(`No more lives!\nYour final score was ${game.score}.\nPress "OK" to play again`);
+        } else {
+            alert(`Out of Time!\nYour final score was ${game.score}.\nPress "OK" to play again`);
         }
         window.location.reload();
     };
