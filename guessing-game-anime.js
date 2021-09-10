@@ -25,7 +25,7 @@ class Game {
     }
 
     checkGuess(guess) {
-        this.guess = guess.toLowerCase();
+        this.guess = guess.trim().toLowerCase();
         let feedback = '';
         if (this.guess === this.answer.toLowerCase()) {
             this.score += 10;
