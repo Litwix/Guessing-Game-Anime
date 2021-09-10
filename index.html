@@ -43,8 +43,23 @@
             </div>
 
             <div id="flex-right">
-                <a href="#rules" class="rulesToggle"><h3>Rules ☰</h3></a>
-            </div>
+                <a href="#rules" id="open-rules" onclick="openRules()"><h3>Rules ☰</h3></a>
+                <div id="rules">
+                    <a href="javascript:void(0)" id="close-rules" onclick="closeRules()">x</a>
+                    <br><br>
+                    <p>You have a total of 90 seconds to try and guess as many anime openings as you can.</p>
+                    <p>Correctly guessed animes appear on the left side. <br>There are no repeats!</p>
+                    <p>The game ends when:
+                        <ul>
+                            <li>You lose all your lives <br>(guess incorrectly 5 times)</li>
+                            <li>There are no more songs left</li>
+                            <li>Time runs out</li>
+                        </ul>
+                    </p>
+                    <p>Don't worry about capitalization.</p>
+                    <p>Please don't include symbols <br>(they will be marked wrong)!</p>
+                </div>
+            </div>            
         </div>
 
         <footer id="footer" class="center">
@@ -52,5 +67,15 @@
         </footer>
 
         <script src='guessing-game-anime.js'></script>
+        <script>
+            function openRules() {
+                document.getElementById('rules').style.width = "20rem";
+                document.getElementById('flex-right').style.marginTop = "20rem";
+            }
+            function closeRules() {
+                document.getElementById('rules').style.width = "0";
+                document.getElementById('flex-right').style.marginTop = "0";
+            }
+        </script>
     </body>
 </html>
