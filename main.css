@@ -4,6 +4,13 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
+html {
+    background: url('/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: rgba(250, 200, 150, 0.75); /* Tint color */
+    background-blend-mode: multiply;
+}
+
 #wrapper {
     display: flex;
     justify-content: center;
@@ -45,7 +52,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    background-color:rgb(245, 207, 242);
+    background-color:rgb(250, 200, 150);
     overflow-x: hidden;
     padding-top: 0.5rem;
 }
@@ -87,14 +94,15 @@ li {
     height: 2rem;
     font-size: large;
     border: none;
-    background-color: rgb(245, 207, 242);
+    background-color: rgb(250, 200, 150);
 }
 
 #input-box {
     width: 20rem;
     height: 2rem;
+    background-color: rgba(250, 200, 150, 0.75);
     font-size: large;
-    border: 1px solid lightgray;
+    border: none;
     border-radius: 20px;
     text-indent: 1rem;
 }
@@ -102,7 +110,7 @@ li {
 #input-box:hover, #input-box:focus-within {
     outline: none;
     border-color: white;
-    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.5);
 }
 
 button {
@@ -112,7 +120,7 @@ button {
     height: 2rem;
     font-size: large;
     border: none;
-    background-color:rgb(245, 207, 242);
+    background-color:rgb(250, 200, 150);
 }
 
 button:hover {
@@ -128,5 +136,5 @@ button:hover {
     margin: 0 0 0 -0.5rem;
     position: fixed;
     bottom: 0;
-    background-color: rgb(245, 207, 242);
+    background-color: rgb(250, 200, 150, 0.75);
 }

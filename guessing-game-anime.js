@@ -121,8 +121,8 @@ function playGame() {
             if (feedback.includes('Game Over!')) {
                 setTimeout(endGame(), 500);
             }
+            startTimer();
         }
-        startTimer();
     });
 
     //Skip Button:
