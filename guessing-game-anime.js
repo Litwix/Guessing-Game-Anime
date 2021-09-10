@@ -81,7 +81,6 @@ function playGame() {
     var audio = new Audio('https://raw.githubusercontent.com/Litwix/Guessing-Game-Anime/main/audio/' + shuffled[game.index]);
     const playOP = document.getElementById('play-op');
     let count = 0;
-    let timerCount = 0;
     playOP.addEventListener('click', function() {
         if (count % 2 === 0) {
             audio.play();
@@ -92,10 +91,7 @@ function playGame() {
             playOP.innerHTML = 'Resume';
             count++;
         }
-        if (timerCount === 0) {
-            timer();
-            timerCount++;
-        }
+        startTimer();
     });
 
     //Submit Button and Enter Key:
@@ -110,6 +106,7 @@ function playGame() {
         if (feedback.includes('Game Over!')) {
             setTimeout(endGame(), 500);
         }
+        startTimer();
     });
 
     const enter = document.getElementById('input-box');
@@ -125,6 +122,7 @@ function playGame() {
                 setTimeout(endGame(), 500);
             }
         }
+        startTimer();
     });
 
     //Skip Button:
@@ -133,12 +131,14 @@ function playGame() {
         game.score -= 3;
         document.querySelector('#score').innerHTML = `Score: ${game.score}`;
         advanceSong();
+        startTimer();
     });
 
     //Hint Button:
     const hint = document.getElementById('hint');
     hint.addEventListener('click', function() {
         alert('Hint functionality unavailable at the moment');
+        // startTimer();
     });
 
     //Restart Button:
@@ -147,6 +147,7 @@ function playGame() {
         window.location.reload();
     });
 
+    //Helper Functions:
     function timer() {
         var sec = 90;
         var timer = setInterval(function() {
@@ -157,6 +158,14 @@ function playGame() {
                 endGame();
             }
         }, 1000);
+    }
+
+    let timerCount = 0;
+    function startTimer() {
+        if (timerCount === 0) {
+            timer();
+            timerCount++;
+        }
     }
 
     function advanceSong() {
