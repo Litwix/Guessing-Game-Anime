@@ -11,7 +11,7 @@ class Game {
         this.answer = this.generateAnswer();
         this.score = 0;
         this.guess = null;
-        this.attempts = 3;
+        this.attempts = 5;
         this.correctGuesses = [];
         this.correctGuessesFormatted = [];
         this.tempIncorrectGuesses = [];
@@ -33,8 +33,10 @@ class Game {
             this.correctGuessesFormatted.push(this.answer);
             this.tempIncorrectGuesses = [];
             this.tempIncorrectGuessesFormatted = [];
-            document.querySelector('#correct-guesses').innerHTML = `Correct Guesses: ${this.correctGuessesFormatted.join(', ')}`;
-            document.querySelector('#incorrect-attempts').innerHTML = `Incorrect Attempts (current round): N/A`;
+            document.querySelector('#score').innerHTML = `Score: ${this.score}`;
+            let totalGuesses = document.querySelector('#correct-guesses').innerHTML;
+            document.querySelector('#correct-guesses').innerHTML = totalGuesses + `${this.answer}<br><br>`;
+            // document.querySelector('#incorrect-attempts').innerHTML = `Incorrect Attempts (current round): N/A`;
             feedback = 'Correct!';
         } else if (this.correctGuesses.includes(this.guess)) {
             feedback = 'You have already correctly guessed this anime!';
@@ -44,15 +46,15 @@ class Game {
             this.tempIncorrectGuesses.push(this.guess);
             this.tempIncorrectGuessesFormatted.push(guess);
             this.attempts--;
-            document.querySelector('#incorrect-attempts').innerHTML = `Incorrect Attempts (current round): ${this.tempIncorrectGuessesFormatted.join(', ')}`;
-            document.querySelector('#remaining').innerHTML = `Remaining Lives: ${this.attempts}`;
+            // document.querySelector('#incorrect-attempts').innerHTML = `Incorrect Attempts (current round): ${this.tempIncorrectGuessesFormatted.join(', ')}`;
+            document.querySelector('#remaining-lives').innerHTML = `Remaining Lives: ${this.attempts}`;
             if (this.attempts === 0) {
                 feedback = `Game Over! Your final score is ${this.score}`;
             } else {
                 feedback = 'Incorrect! Try again!';
             }
         }
-        document.querySelector('#feedback > h3').innerHTML = feedback;
+        document.querySelector('#feedback').innerHTML = feedback;
         return feedback;
     }
 }
@@ -91,7 +93,7 @@ function playGame() {
         }
     });
 
-    //Submit Button:
+    //Submit Button and Enter Key:
     const submit = document.getElementById('submit');
     submit.addEventListener('click', function() {
         const guess = document.querySelector('#input-box').value;
@@ -105,18 +107,34 @@ function playGame() {
         }
     });
 
+    const enter = document.getElementById('input-box');
+    enter.addEventListener('keypress', function(key) {
+        if (key.code === 'Enter') {
+            const guess = document.querySelector('#input-box').value;
+            document.querySelector('#input-box').value = '';
+            const feedback = game.checkGuess(guess);
+            if (feedback.includes('Correct!')) {
+                setTimeout(advanceSong(), 500);
+            }
+            if (feedback.includes('Game Over!')) {
+                setTimeout(endGame(), 500);
+            }
+        }
+    });
+
     //Skip Button:
     const skip = document.getElementById('skip');
     skip.addEventListener('click', function() {
         game.score -= 3;
-        setTimeout(advanceSong(), 500);
-    })
+        document.querySelector('#score').innerHTML = `Score: ${game.score}`;
+        advanceSong();
+    });
 
     //Hint Button:
     const hint = document.getElementById('hint');
     hint.addEventListener('click', function() {
         alert('Hint functionality unavailable at the moment');
-    })
+    });
 
     //Restart Button:
     const restart = document.getElementById('restart');
@@ -135,7 +153,7 @@ function playGame() {
         audio.play();
         count = 1;
         playOP.innerHTML = 'Pause';
-    }
+    };
 
     function endGame() {
         audio.pause();
@@ -145,7 +163,7 @@ function playGame() {
             alert(`No more lives!\nYour final score was ${game.score}.\nPress "OK" to play again`);
         }
         window.location.reload();
-    }
+    };
 }
 
 playGame();

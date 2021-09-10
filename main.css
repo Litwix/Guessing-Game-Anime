@@ -4,6 +4,28 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
+#wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#flex-left, #flex-center, #flex-right {
+    flex: 1;
+}
+
+#flex-left {
+    padding-top: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+#flex-left > h3 {
+    text-decoration: underline;
+}
+
+#flex-center {
+    padding-right: 1.5rem;
+}
+
 .center {
     text-align: center;
 }
@@ -15,17 +37,20 @@
 #play-op {
     margin: 0.5rem;
     padding: 0.5rem;
-    width: 12rem;
+    width: 15rem;
+    height: 2rem;
+    font-size: large;
     border: none;
     background-color: rgb(245, 207, 242);
 }
 
 #input-box {
-    width: 15rem;
-    height: 1.2rem;
+    width: 20rem;
+    height: 2rem;
+    font-size: large;
     border: 1px solid lightgray;
     border-radius: 20px;
-    text-indent: 0.8rem;
+    text-indent: 1rem;
 }
 
 #input-box:hover, #input-box:focus-within {
@@ -37,7 +62,9 @@
 button {
     margin: 0.5rem 0.2rem;
     padding: 0.3rem;
-    width: 5rem;
+    width: 6rem;
+    height: 2rem;
+    font-size: large;
     border: none;
     background-color:rgb(245, 207, 242);
 }
@@ -46,14 +73,8 @@ button:hover {
     box-shadow: 0 0 0.3rem 0 rgb(125, 200, 250);
 }
 
-.guess {
-    margin: 0.4rem;
-    padding: 0.3rem 5rem;
-    border: 1px solid lightgray;
-}
-
 #restart {
-    margin: 5rem;
+    margin: 2.5rem;
 }
 
 #footer {

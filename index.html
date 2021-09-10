@@ -6,36 +6,44 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <header id="header" class="center">
-            <h1>The Guessing Game: Anime Edition</h1>
-            <h3>Play the random anime opening audio below<br>and see if you can guess the anime</h3>
-        </header>
-
-       <div class="center"><button id="play-op">Play Random Anime OP</button></div>
-
-        <div id="user-input" class="center">
-            <p><input id="input-box" type="text" value=""></p>
-            <div id="feedback" class="center">
-                <h3>Let's Play!</h3>
+        <div id="wrapper">
+            <div id="flex-left">
+                <h3>Correct Guesses:</h3>
+                <div id="correct-guesses"></div>
             </div>
-            <button id="submit">Submit</button>
-            <button id="skip">Skip</button>
-            <button id="hint">Hint</button>
+
+            <div id="flex-center">
+                <header id="header" class="center">
+                    <h1>Guessing Game: Anime Edition</h1>
+                    <h3>Play the random anime opening audio below<br>and see if you can guess the anime</h3>
+                </header>
+
+                <div class="center"><button id="play-op">Play Random Anime OP</button></div>
+
+                <div id="user-input" class="center">
+                    <p><input id="input-box" type="text" value=""></p>
+                    <h3 id="feedback" class="center">Let's Play!</h3>
+                    <button id="submit">Submit</button>
+                    <button id="skip">Skip</button>
+                    <button id="hint">Hint</button>
+                </div>
+
+                <div id="hintString" class="center">
+                    <h3></h3>
+                </div>
+
+                <div id="game-info" class="center">
+                    <h3 id="remaining-time">Remaining Time:</h3>
+                    <h3 id="remaining-lives">Remaining Lives: 5</h3>
+                    <h3 id="score">Score: 0</h3>
+                    <!-- <h3 id="incorrect-attempts">Incorrect Attempts (current round):</h3> -->
+                </div>
+
+                <div class="center"><button id="restart">Restart</button></div>
+            </div>
+
+            <div id="flex-right"></div>
         </div>
-
-        
-
-        <div id="hintString" class="center">
-            <h3></h3>
-        </div>
-
-        <div id="guess-info" class="center">
-            <h3 id="remaining">Remaining Lives: 3</h3>
-            <h3 id="correct-guesses">Correct Guesses:</h3>
-            <h3 id="incorrect-attempts">Incorrect Attempts (current round):</h3>
-        </div>
-
-        <div class="center"><button id="restart">Restart</button></div>
 
         <footer id="footer" class="center">
             <h3>Litwix Creations</h3>
